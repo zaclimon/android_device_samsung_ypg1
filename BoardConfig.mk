@@ -90,8 +90,8 @@ TARGET_DISABLE_TRIPLE_BUFFERING := false
 BOARD_ALLOW_EGL_HIBERNATION := true
 
 # Define kernel config for inline building
-TARGET_KERNEL_CONFIG := cyanogenmod_ypg1_defconfig
-TARGET_KERNEL_SOURCE := kernel/samsung/ypg13.0
+TARGET_KERNEL_CONFIG := impulse
+TARGET_KERNEL_SOURCE := kernel/samsung/impulse
 
 # WIFI defines
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
