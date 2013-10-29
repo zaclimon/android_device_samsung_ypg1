@@ -110,10 +110,6 @@ PRODUCT_PACKAGES += \
     libcamera \
     libaudiohw_legacy
 
-# apns config file
-PRODUCT_COPY_FILES += \
-    device/samsung/ypg1/prebuilt/etc/apns-conf.xml:system/etc/apns-conf.xml
-
 # Charger
 PRODUCT_PACKAGES += \
     charger \
