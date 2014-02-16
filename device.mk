@@ -35,6 +35,7 @@ PRODUCT_COPY_FILES += \
   device/samsung/ypg1/init.recovery.aries.rc:root/init.recovery.aries.rc \
   device/samsung/ypg1/init.aries.gps.rc:root/init.aries.gps.rc \
   device/samsung/ypg1/ueventd.aries.rc:root/ueventd.aries.rc \
+  device/samsung/ypg1/setupdatadata.sh:root/sbin/setupdatadata.sh \
   device/samsung/ypg1/fstab.aries:root/fstab.aries
 
 # Keylayout and Keychars
@@ -150,7 +151,6 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES := \
 # be reachable from resources or other mechanisms.
 PRODUCT_PROPERTY_OVERRIDES += \
        wifi.interface=wlan0 \
-       dalvik.vm.heapsize=32m
 
 # enable Google-specific location features,
 # like NetworkLocationProvider and LocationCollector
@@ -162,9 +162,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.cwm.enable_key_repeat=true
 
-# This is taken from the moto wingray, is it correct?
-PRODUCT_CHARACTERISTICS := tablet
-
 # Extended JNI checks
 # The extended JNI checks will cause the system to run more slowly, but they can spot a variety of nasty bugs
 # before they have a chance to cause problems.
@@ -174,6 +171,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.checkjni=false
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
+
+include frameworks/native/build/phone-hdpi-512-dalvik-heap.mk
 
 # Vold
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -186,6 +185,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Set ro.bq.gpu_to_cpu
 PRODUCT_PROPERTY_OVERRIDES += \
        ro.bq.gpu_to_cpu_unsupported=1
+
+# YP-G1 is a low ram device
+PRODUCT_PROPERTY_OVERRIDES += \
+       ro.config.low_ram=true
 
 # Conversion files
 PRODUCT_COPY_FILES += \

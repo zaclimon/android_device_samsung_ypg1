@@ -1,4 +1,21 @@
-# Samsung YP-G1 compile definitions.
+# Copyright (C) 2007 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# BoardConfig.mk
+#
+# Product-specific compile-time definitions.
+#
 
 # Set this up here so that BoardVendorConfig.mk can override it
 BOARD_USES_GENERIC_AUDIO := false
@@ -27,8 +44,7 @@ TARGET_BOOTLOADER_BOARD_NAME := s5pc110
 TARGET_PROVIDES_LIBAUDIO := true
 
 # Releasetools
-TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/samsung/ypg1/releasetools/ypg1_ota_from_target_files
-TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := ./device/samsung/ypg1/releasetools/ypg1_img_from_target_files
+TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/ypg1
 
 # Camera defines
 USE_CAMERA_STUB := false
@@ -86,9 +102,12 @@ BOARD_CUSTOM_VSYNC_IOCTL := true
 # OpenGL ES driver that in conjunction with disable triple-buffering
 # would hurt performance significantly (see b/6016711)
 TARGET_DISABLE_TRIPLE_BUFFERING := false
-
 BOARD_ALLOW_EGL_HIBERNATION := true
 
+
+# Our devices uses old GPU blobs
+BOARD_EGL_WORKAROUND_BUG_10194508 := true
+ 
 # Define kernel config for inline building
 TARGET_KERNEL_CONFIG := cyanogenmod_ypg1_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/ypg1
@@ -127,6 +146,9 @@ BOARD_USE_LEGACY_TOUCHSCREEN := true
 # Dalvik lower memory footprint
 TARGET_ARCH_LOWMEM := true
 
+# Framework sync
+TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
+
 # FM Radio
 BOARD_HAVE_FM_RADIO := true
 BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
@@ -138,21 +160,25 @@ BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/charging_mode
 # Suspend in charger to disable capacitive keys
 BOARD_CHARGER_ENABLE_SUSPEND := true
 
+# Screenrecord
+BOARD_SCREENRECORD_LANDSCAPE_ONLY := true
+
+# SELinux
 BOARD_SEPOLICY_DIRS := \
         device/samsung/ypg1/sepolicy
 
 BOARD_SEPOLICY_UNION := \
-	device.te \
-	domain.te \
-	file_contexts \
-	file.te \
+        device.te \
+        domain.te \
+        file_contexts \
+        file.te \
         geomagneticd.te \
-	init.te \
+        init.te \
         mediaserver.te \
         orientationd.te \
-	pvrsrvinit.te \
-	system.te \
-	wpa_supplicant.te
+        pvrsrvinit.te \
+        system.te \
+        wpa_supplicant.te
 
 # Hardware tunables
 BOARD_HARDWARE_CLASS := device/samsung/ypg1/cmhw/
