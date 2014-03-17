@@ -26,7 +26,7 @@ PRODUCT_LOCALES += hdpi
 
 # Discard inherited values and use our own instead.
 PRODUCT_DEVICE := YP-G1
-PRODUCT_NAME := cm_ypg1
+PRODUCT_NAME := carbon_ypg1
 PRODUCT_BRAND := Samsung
 PRODUCT_MODEL := Galaxy Player 4.0
 PROUDCT_MANUFACTURER := Samsung
