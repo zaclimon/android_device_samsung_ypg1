@@ -109,8 +109,8 @@ BOARD_ALLOW_EGL_HIBERNATION := true
 BOARD_EGL_WORKAROUND_BUG_10194508 := true
  
 # Define kernel config for inline building
-TARGET_KERNEL_CONFIG := cyanogenmod_ypg1_defconfig
-TARGET_KERNEL_SOURCE := kernel/samsung/ypg13.0
+TARGET_KERNEL_CONFIG := impulse_defconfig
+TARGET_KERNEL_SOURCE := kernel/samsung/impulse
 
 # WIFI defines
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
@@ -131,7 +131,8 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/s3c-usbgadget/gadget/l
 
 # Recovery
 TARGET_USERIMAGES_USE_EXT4 := true
-BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/ypg1/recovery/graphics.c
+# Disable for TWRP
+# BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/ypg1/recovery/graphics.c
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_RECOVERY_HANDLES_MOUNT := true
 BOARD_USES_BML_OVER_MTD := true
@@ -181,3 +182,17 @@ BOARD_SEPOLICY_UNION := \
 
 # Hardware tunables
 BOARD_HARDWARE_CLASS := device/samsung/ypg1/cmhw/
+
+# TWRP Settings
+DEVICE_RESOLUTION := 480x800
+TW_NO_REBOOT_BOOTLOADER := true
+TW_INTERNAL_STORAGE_PATH := "/sdcard"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "sdcard"
+TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
+TW_FLASH_FROM_STORAGE := true
+TW_EXCLUDE_SUPERSU := true
+TW_NO_PARTITION_SD_CARD := true
+TW_INCLUDE_FB2PNG := true
+TW_MAX_BRIGHTNESS := 255
+TW_BRIGHTNESS_PATH := "/sys/class/backlight/s5p_bl/brightness"
