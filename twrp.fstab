@@ -6,4 +6,4 @@
 /cache			yaffs2		cache			flags=backup=1;canbewiped;wipeingui;wipeduringfactoryreset
 /datadata		yaffs2		datadata		flags=backup=1;canbewiped;wipeingui;wipeduringfactoryreset
 /sdcard			vfat		/dev/block/mmcblk0p1	flags=display="Internal SDcard";storage;wipeingui;settingsstorage
-/external_sd		vfat		/dev/block/mmcblk1p1	flags=display="External SDcard";storage;wipeingui;removable
+/emmc		vfat		/dev/block/mmcblk1p1	flags=display="External SDcard";storage;wipeingui;removable
