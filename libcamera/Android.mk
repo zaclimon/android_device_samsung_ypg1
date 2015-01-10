@@ -11,6 +11,11 @@ LOCAL_C_INCLUDES += hardware/samsung/exynos3/s5pc110/include
 LOCAL_C_INCLUDES += hardware/samsung/exynos3/s5pc110/libs3cjpeg
 LOCAL_C_INCLUDES += frameworks/native/include/media/hardware
 
+LOCAL_CFLAGS := \
+	-Wno-missing-field-initializers \
+	-Wno-unused-parameter \
+	-Wno-extra
+
 LOCAL_SRC_FILES:= \
 	SecCamera.cpp \
 	SecCameraHWInterface.cpp \
