@@ -178,16 +178,12 @@ BOARD_SEPOLICY_DIRS := \
 
 BOARD_SEPOLICY_UNION := \
         device.te \
-        domain.te \
         file_contexts \
         file.te \
-        geomagneticd.te \
         init.te \
         mediaserver.te \
         orientationd.te \
         pvrsrvinit.te \
-        system.te \
-        wpa_supplicant.te
 
 # Hardware tunables
 BOARD_HARDWARE_CLASS := device/samsung/ypg1/cmhw/
