@@ -78,17 +78,11 @@ BOARD_V4L2_DEVICE := /dev/video1
 BOARD_CAMERA_DEVICE := /dev/video0
 BOARD_SECOND_CAMERA_DEVICE := /dev/video2
 
-# XXX
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 395264000
-
-# Max image/partition sizes
-# XXX: check and fix
-BOARD_BOOTIMAGE_MAX_SIZE := $(call image-size-from-data-size,0x00280000)
-BOARD_RECOVERYIMAGE_MAX_SIZE := $(call image-size-from-data-size,0x00500000)
-BOARD_SYSTEMIMAGE_MAX_SIZE := $(call image-size-from-data-size,0x07500000)
-BOARD_USERDATAIMAGE_MAX_SIZE := $(call image-size-from-data-size,0x04ac0000)
-# The size of a block that can be marked bad.
-BOARD_FLASH_BLOCK_SIZE := 131072
+# Partitions
+BOARD_BOOTIMAGE_PARTITION_SIZE := 7864320
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 629145600
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 1379926016
+BOARD_FLASH_BLOCK_SIZE := 4096
 
 # Kernel defines
 BOARD_NAND_PAGE_SIZE := 4096
