@@ -98,8 +98,10 @@ PRODUCT_COPY_FILES += $(foreach module,\
 	$(wildcard device/samsung/ypg1/modules/*.ko),\
 	$(module):system/lib/modules/$(notdir $(module)))
 
+# Audio
 PRODUCT_COPY_FILES += \
-    device/samsung/ypg1/libaudio/audio_policy.conf:system/etc/audio_policy.conf
+    device/samsung/ypg1/libaudio/audio_policy.conf:system/etc/audio_policy.conf \
+    device/samsung/ypg1/libaudio/audio_effects.conf:system/vendor/etc/audio_effects.conf
 
 # update utilities
 PRODUCT_PACKAGES += \
