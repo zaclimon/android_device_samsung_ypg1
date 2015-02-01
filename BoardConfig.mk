@@ -43,6 +43,9 @@ TARGET_BOOTLOADER_BOARD_NAME := s5pc110
 # Provide our own libaudio
 TARGET_PROVIDES_LIBAUDIO := true
 
+# Bionic
+TARGET_ENABLE_NON_PIE_SUPPORT := true
+
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/ypg1
 
