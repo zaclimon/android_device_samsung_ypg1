@@ -359,7 +359,7 @@ static int fimc_v4l2_querybuf(int fp, struct fimc_buffer *buffer, enum v4l2_buf_
     buffer->length = v4l2_buf.length;
     if ((buffer->start = (char *)mmap(0, v4l2_buf.length,
                                          PROT_READ | PROT_WRITE, MAP_SHARED,
-                                         fp, v4l2_buf.m.offset)) == '\0') {
+                                         fp, v4l2_buf.m.offset)) < 0) {
          ALOGE("%s %d] mmap() failed\n",__func__, __LINE__);
          return -1;
     }
@@ -589,9 +589,9 @@ int SecCamera::initCamera(int index)
             ALOGE("ERR(%s):Cannot open %s (error : %s)\n", __func__, CAMERA_DEV_NAME, strerror(errno));
             return -1;
         }
-        ALOGV("%s: open(%s) --> m_cam_fd %d", __FUNCTION__, CAMERA_DEV_NAME, m_cam_fd);
 
-        ALOGE("initCamera: m_cam_fd(%d), m_jpeg_fd(%d)", m_cam_fd, m_jpeg_fd);
+        ALOGV("%s: open(%s) --> m_cam_fd %d", __FUNCTION__, CAMERA_DEV_NAME, m_cam_fd);
+        ALOGV("initCamera: m_cam_fd(%d), m_jpeg_fd(%d)", m_cam_fd, m_jpeg_fd);
 
         ret = fimc_v4l2_querycap(m_cam_fd);
         CHECK(ret);
@@ -607,7 +607,7 @@ int SecCamera::initCamera(int index)
             return -1;
         }
 
-        ALOGE("initCamera: m_cam_fd2(%d)", m_cam_fd2);
+        ALOGV("initCamera: m_cam_fd2(%d)", m_cam_fd2);
 
         ret = fimc_v4l2_querycap(m_cam_fd2);
         CHECK(ret);
@@ -1093,8 +1093,8 @@ int SecCamera::setSnapshotCmd(void)
 
     int ret = 0;
 
-    ALOG_TIME_DEFINE(0)
-    ALOG_TIME_DEFINE(1)
+    LOG_TIME_DEFINE(0)
+    LOG_TIME_DEFINE(1)
 
     if (m_cam_fd <= 0) {
         ALOGE("ERR(%s):Camera was closed\n", __func__);
@@ -1102,17 +1102,17 @@ int SecCamera::setSnapshotCmd(void)
     }
 
     if (m_flag_camera_start > 0) {
-        ALOG_TIME_START(0)
+        LOG_TIME_START(0)
         ALOGW("WARN(%s):Camera was in preview, should have been stopped\n", __func__);
         stopPreview();
-        ALOG_TIME_END(0)
+        LOG_TIME_END(0)
     }
 
     memset(&m_events_c, 0, sizeof(m_events_c));
     m_events_c.fd = m_cam_fd;
     m_events_c.events = POLLIN | POLLERR;
 
-    ALOG_TIME_START(1) // prepare
+    LOG_TIME_START(1) // prepare
     int nframe = 1;
 
     ret = fimc_v4l2_enum_fmt(m_cam_fd,m_snapshot_v4lformat);
@@ -1130,7 +1130,7 @@ int SecCamera::setSnapshotCmd(void)
     ret = fimc_v4l2_streamon(m_cam_fd);
     CHECK(ret);
 
-    ALOG_TIME_END(1)
+    LOG_TIME_END(1)
 
     return 0;
 }
@@ -1160,7 +1160,7 @@ unsigned char* SecCamera::getJpeg(int *jpeg_size, unsigned int *phyaddr)
     int index, ret = 0;
     unsigned char *addr;
 
-    ALOG_TIME_DEFINE(2)
+    LOG_TIME_DEFINE(2)
 
     // capture
     ret = fimc_poll(&m_events_c);
@@ -1187,10 +1187,10 @@ unsigned char* SecCamera::getJpeg(int *jpeg_size, unsigned int *phyaddr)
     addr = (unsigned char*)(m_capture_buf.start) + main_offset;
     *phyaddr = getPhyAddrY(index) + m_postview_offset;
 
-    ALOG_TIME_START(2) // post
+    LOG_TIME_START(2) // post
     ret = fimc_v4l2_streamoff(m_cam_fd);
     CHECK_PTR(ret);
-    ALOG_TIME_END(2)
+    LOG_TIME_END(2)
 
     return addr;
 }
@@ -1314,12 +1314,12 @@ int SecCamera::getSnapshotAndJpeg(unsigned char *yuv_buf, unsigned char *jpeg_bu
     unsigned char *addr;
     int ret = 0;
 
-    ALOG_TIME_DEFINE(0)
-    ALOG_TIME_DEFINE(1)
-    ALOG_TIME_DEFINE(2)
-    ALOG_TIME_DEFINE(3)
-    ALOG_TIME_DEFINE(4)
-    ALOG_TIME_DEFINE(5)
+    LOG_TIME_DEFINE(0)
+    LOG_TIME_DEFINE(1)
+    LOG_TIME_DEFINE(2)
+    LOG_TIME_DEFINE(3)
+    LOG_TIME_DEFINE(4)
+    LOG_TIME_DEFINE(5)
 
     //fimc_v4l2_streamoff(m_cam_fd); [zzangdol] remove - it is separate in HWInterface with camera_id
 
@@ -1329,10 +1329,10 @@ int SecCamera::getSnapshotAndJpeg(unsigned char *yuv_buf, unsigned char *jpeg_bu
     }
 
     if (m_flag_camera_start > 0) {
-        ALOG_TIME_START(0)
+        LOG_TIME_START(0)
         ALOGW("WARN(%s):Camera was in preview, should have been stopped\n", __func__);
         stopPreview();
-        ALOG_TIME_END(0)
+        LOG_TIME_END(0)
     }
 
     memset(&m_events_c, 0, sizeof(m_events_c));
@@ -1360,7 +1360,7 @@ int SecCamera::getSnapshotAndJpeg(unsigned char *yuv_buf, unsigned char *jpeg_bu
         ALOGV("SnapshotFormat:UnknownFormat");
 #endif
 
-    ALOG_TIME_START(1) // prepare
+    LOG_TIME_START(1) // prepare
     int nframe = 1;
 
     ret = fimc_v4l2_enum_fmt(m_cam_fd,m_snapshot_v4lformat);
@@ -1377,26 +1377,26 @@ int SecCamera::getSnapshotAndJpeg(unsigned char *yuv_buf, unsigned char *jpeg_bu
 
     ret = fimc_v4l2_streamon(m_cam_fd);
     CHECK(ret);
-    ALOG_TIME_END(1)
+    LOG_TIME_END(1)
 
-    ALOG_TIME_START(2) // capture
+    LOG_TIME_START(2) // capture
     fimc_poll(&m_events_c);
     index = fimc_v4l2_dqbuf(m_cam_fd);
     fimc_v4l2_s_ctrl(m_cam_fd, V4L2_CID_STREAM_PAUSE, 0);
     ALOGV("\nsnapshot dequeued buffer = %d snapshot_width = %d snapshot_height = %d\n\n",
             index, m_snapshot_width, m_snapshot_height);
 
-    ALOG_TIME_END(2)
+    LOG_TIME_END(2)
 
     ALOGI("%s : calling memcpy from m_capture_buf", __func__);
     memcpy(yuv_buf, (unsigned char*)m_capture_buf.start, m_snapshot_width * m_snapshot_height * 2);
-    ALOG_TIME_START(5) // post
+    LOG_TIME_START(5) // post
     fimc_v4l2_streamoff(m_cam_fd);
-    ALOG_TIME_END(5)
+    LOG_TIME_END(5)
 
-    ALOG_CAMERA("getSnapshotAndJpeg intervals : stopPreview(%lu), prepare(%lu),"
+    LOG_CAMERA("getSnapshotAndJpeg intervals : stopPreview(%lu), prepare(%lu),"
                 " capture(%lu), memcpy(%lu), yuv2Jpeg(%lu), post(%lu)  us",
-                    ALOG_TIME(0), LOG_TIME(1), LOG_TIME(2), LOG_TIME(3), LOG_TIME(4), LOG_TIME(5));
+                    LOG_TIME(0), LOG_TIME(1), LOG_TIME(2), LOG_TIME(3), LOG_TIME(4), LOG_TIME(5));
     /* JPEG encoding */
     JpegEncoder jpgEnc;
     int inFormat = JPG_MODESEL_YCBCR;
