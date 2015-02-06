@@ -160,12 +160,6 @@ BOARD_CHARGER_ENABLE_SUSPEND := true
 # Screenrecord
 BOARD_SCREENRECORD_LANDSCAPE_ONLY := true
 
-# Enable dex-preoptimization to speed up first boot sequence
-ifeq ($(HOST_OS),linux)
-    WITH_DEXPREOPT := true
-endif
-DONT_DEXPREOPT_PREBUILTS := true
-
 # SELinux
 BOARD_SEPOLICY_DIRS := \
         device/samsung/ypg1/sepolicy
