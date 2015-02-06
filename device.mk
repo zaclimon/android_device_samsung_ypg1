@@ -203,7 +203,10 @@ PRODUCT_COPY_FILES += \
     device/samsung/ypg1/updater.sh:updater.sh \
     device/samsung/ypg1/bml_over_mtd.sh:bml_over_mtd.sh \
     device/samsung/ypg1/recovery.bin:recovery.bin \
-    device/samsung/ypg1/restorecon.sh:restorecon.sh
+    device/samsung/ypg1/restorecon.sh:restorecon.sh \
+    device/samsung/ypg1/prebuilt/utilities/bml_over_mtd:bml_over_mtd \
+    device/samsung/ypg1/prebuilt/utilities/erase_image:erase_image \
+    device/samsung/ypg1/prebuilt/utilities/flash_image:flash_image
 
 # See comment at the top of this file. This is where the other
 # half of the device-specific product definition file takes care
