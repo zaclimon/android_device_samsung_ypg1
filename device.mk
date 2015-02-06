@@ -104,7 +104,8 @@ PRODUCT_COPY_FILES += \
 
 # update utilities
 PRODUCT_PACKAGES += \
-	bml_over_mtd
+	bml_over_mtd \
+	busybox
 
 # Libs
 PRODUCT_PACKAGES += \
