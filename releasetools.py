@@ -20,10 +20,11 @@ import os
 
 TARGET_DIR = os.getenv('OUT')
 UTILITIES_DIR = os.path.join(TARGET_DIR, 'utilities')
+SYMBOL_UTILITIES_DIR = os.path.join(TARGET_DIR, 'symbols/utilities')
 
 def FullOTA_Assertions(info):
-  info.output_zip.write(os.path.join(UTILITIES_DIR, "make_ext4fs"),"make_ext4fs")
-  info.output_zip.write(os.path.join(UTILITIES_DIR, "busybox"),"busybox")
+  info.output_zip.write(os.path.join(SYMBOL_UTILITIES_DIR, "make_ext4fs"),"make_ext4fs")
+  info.output_zip.write(os.path.join(SYMBOL_UTILITIES_DIR, "busybox"),"busybox")
   info.output_zip.write(os.path.join(UTILITIES_DIR, "flash_image"),"flash_image")
   info.output_zip.write(os.path.join(UTILITIES_DIR, "erase_image"),"erase_image")
   info.output_zip.write(os.path.join(UTILITIES_DIR, "bml_over_mtd"),"bml_over_mtd")
