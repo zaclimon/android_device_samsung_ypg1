@@ -151,8 +151,7 @@ PRODUCT_COPY_FILES += \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES := \
-    persist.service.adb.enable=1 \
-    persist.sys.usb.config=mass_storage
+    persist.sys.usb.config=mtp
 
 # These are the hardware-specific settings that are stored in system properties.
 # Note that the only such settings should be the ones that are too low-level to
