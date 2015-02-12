@@ -105,7 +105,8 @@ PRODUCT_COPY_FILES += \
 # update utilities
 PRODUCT_PACKAGES += \
 	bml_over_mtd \
-	busybox
+	static_busybox \
+	utility_make_ext4fs
 
 # Libs
 PRODUCT_PACKAGES += \
