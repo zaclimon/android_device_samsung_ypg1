@@ -213,7 +213,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # YP-G1 is a low ram device
 PRODUCT_PROPERTY_OVERRIDES += \
-       ro.config.low_ram=true
+       ro.config.low_ram=true \
+       ro.sys.fw.bg_apps_limit=16 \
+       ro.config.max_starting_bg=10 \
+       ro.ksm.default=1
 
 # Conversion files
 PRODUCT_COPY_FILES += \
