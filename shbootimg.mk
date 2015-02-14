@@ -6,7 +6,7 @@ $(uncompressed_ramdisk): $(INSTALLED_RAMDISK_TARGET)
 	$(MINIGZIP) -d < $(INSTALLED_RAMDISK_TARGET) > $@
 
 # Add ramdisk dependencies to kernel
-TARGET_KERNEL_BINARIES: $(PRODUCT_OUT)/ramdisk-recovery.cpio $(uncompressed_ramdisk) $(PRODUCT_OUT)/flash_image $(PRODUCT_OUT)/symbols/utilities/make_ext4fs $(PRODUCT_OUT)/erase_image $(PRODUCT_OUT)/bml_over_mtd
+TARGET_KERNEL_BINARIES: $(PRODUCT_OUT)/ramdisk-recovery.cpio $(uncompressed_ramdisk) $(PRODUCT_OUT)/flash_image $(PRODUCT_OUT)/utilities/make_ext4fs $(PRODUCT_OUT)/utilities/busybox $(PRODUCT_OUT)/erase_image $(PRODUCT_OUT)/bml_over_mtd
 
 INSTALLED_BOOTIMAGE_TARGET := $(PRODUCT_OUT)/boot.img
 $(INSTALLED_BOOTIMAGE_TARGET): $(INSTALLED_KERNEL_TARGET)
