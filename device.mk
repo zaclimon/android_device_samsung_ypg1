@@ -88,6 +88,15 @@ PRODUCT_PACKAGES += \
     overlay.s5pc110 \
     hwcomposer.s5pc110 \
 
+# Wi-Fi
+PRODUCT_PACKAGES += \
+    libwpa_client \
+    hostapd \
+    hostapd_default.conf \
+    dhcpcd.conf \
+    wpa_supplicant \
+    wpa_supplicant.conf
+
 # Device-specific packages
 PRODUCT_PACKAGES += \
     AriesParts
