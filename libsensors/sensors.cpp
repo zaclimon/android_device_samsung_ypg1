@@ -35,8 +35,7 @@
 
 #include "LightSensor.h"
 #include "ProximitySensor.h"
-//#include "BoschYamaha.h"
-#include "Smb380Sensor.h"
+#include "Bma023Sensor.h"
 #include "CompassSensor.h"
 #include "OrientationSensor.h"
 
@@ -70,26 +69,36 @@
 /* The SENSORS Module */
 static const struct sensor_t sSensorList[] = {
 
-        { "SMB380 3-axis Accelerometer",
-          "Bosch Sensortec",
+        { "BMA023 Acceleration Sensor",
+          "Bosch",
           1, SENSORS_ACCELERATION_HANDLE,
-          SENSOR_TYPE_ACCELEROMETER, RANGE_A, RESOLUTION_A, 0.20f, 10000, 0, 0},
+          SENSOR_TYPE_ACCELEROMETER, RANGE_A, RESOLUTION_A, 0.20f, 20000, 0, 0, 0, 0, 0,
+              SENSOR_FLAG_WAKE_UP | SENSOR_FLAG_ON_CHANGE_MODE,
+              { } },
         { "MS3C 3-axis Magnetic field sensor",
-          "Yamaha ",
+          "Yamaha",
           1, SENSORS_MAGNETIC_FIELD_HANDLE,
-          SENSOR_TYPE_MAGNETIC_FIELD, 2000.0f, CONVERT_M, 6.8f, 10000, 0, 0},
-        { "CM Hacked Orientation Sensor",
+          SENSOR_TYPE_MAGNETIC_FIELD, 2000.0f, CONVERT_M, 4.0f, 30000, 0, 0, 0, 0, 0,
+              SENSOR_FLAG_WAKE_UP | SENSOR_FLAG_ON_CHANGE_MODE,
+              { } },
+	{ "CM Hacked Orientation Sensor",
           "CM Team",
           1, SENSORS_ORIENTATION_HANDLE,
-          SENSOR_TYPE_ORIENTATION,  360.0f, CONVERT_O, 7.8f, 10000, 0, 0},
+           SENSOR_TYPE_ORIENTATION,  360.0f, CONVERT_O, 4.2f, 30000, 0, 0, 0, 0, 0,
+              SENSOR_FLAG_WAKE_UP | SENSOR_FLAG_ON_CHANGE_MODE,
+              { } },
         { "GP2A Light sensor",
           "Sharp",
           1, SENSORS_LIGHT_HANDLE,
-          SENSOR_TYPE_LIGHT, 10240.0f, 1.0f, 0.75f, 0, 0, 0},
+          SENSOR_TYPE_LIGHT, 10240.0f, 1.0f, 0.75f, 0, 0, 0, 0, 0, 0,
+              SENSOR_FLAG_ON_CHANGE_MODE,
+              { } },
         { "GP2A Proximity sensor",
           "Sharp",
           1, SENSORS_PROXIMITY_HANDLE,
-          SENSOR_TYPE_PROXIMITY, 5.0f, 5.0f, 0.75f, 0, 0, 0},
+          SENSOR_TYPE_PROXIMITY, 5.0f, 5.0f, 0.75f, 0, 0, 0, 0, 0, 0,
+              SENSOR_FLAG_WAKE_UP | SENSOR_FLAG_ON_CHANGE_MODE,
+              { } },
 };
 
 
@@ -187,7 +196,7 @@ sensors_poll_context_t::sensors_poll_context_t()
     mPollFds[proximity].events = POLLIN;
     mPollFds[proximity].revents = 0;
 
-    mSensors[bosch] = new Smb380Sensor();
+    mSensors[bosch] = new Bma023Sensor();
     mPollFds[bosch].fd = mSensors[bosch]->getFd();
     mPollFds[bosch].events = POLLIN;
     mPollFds[bosch].revents = 0;
