@@ -139,6 +139,15 @@ on boot
     setprop status.battery.level_raw  50
     setprop status.battery.level_scale 9
 
+# Swap
+    write /proc/sys/vm/page-cluster 0
+    write /proc/sys/vm/vfs_cache_pressure 85
+    write /proc/sys/vm/swappiness 70
+    write /proc/sys/vm/dirty_ratio 16
+    write /proc/sys/vm/dirty_background_ratio 12
+    write /proc/sys/vm/dirty_expire_centisecs 500
+    write /proc/sys/vm/dirty_writeback_centisecs 1000
+
 # KSM
     write /sys/kernel/mm/ksm/pages_to_scan 100
     write /sys/kernel/mm/ksm/sleep_millisecs 500
