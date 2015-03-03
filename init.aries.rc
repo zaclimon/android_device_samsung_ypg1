@@ -252,10 +252,9 @@ on property:service.brcm.bt.soft_onoff=0
     stop btld
 
 # LMK values
+# 6, 12, 26, 48, 64, 96 MB
 on property:sys.boot_completed=1
-    write /sys/module/lowmemorykiller/parameters/adj 0,1,2,4,7,15
-    write /sys/module/lowmemorykiller/parameters/minfree 2048,4096,8192,16384,24576,32768
-    write /proc/1/oom_adj -16
+    write /sys/module/lowmemorykiller/parameters/minfree 1536,3072,6656,12288,16384,24576
 
 # bugreport is triggered by holding down volume down, volume up and power
 service bugreport /system/bin/dumpstate -d -v -o /sdcard/bugreports/bugreport
