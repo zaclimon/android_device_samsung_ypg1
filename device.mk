@@ -218,6 +218,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
        ro.config.max_starting_bg=10 \
        ro.ksm.default=1
 
+# ART
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.dex2oat-Xms=8m \
+    dalvik.vm.dex2oat-Xmx=96m \
+    dalvik.vm.image-dex2oat-Xms=48m \
+    dalvik.vm.image-dex2oat-Xmx=48m \
+    dalvik.vm.dex2oat-filter=interpret-only \
+    dalvik.vm.image-dex2oat-filter=speed
+
+PRODUCT_DEX_PREOPT_DEFAULT_FLAGS := \
+    --compiler-filter=interpret-only
+
 # Conversion files
 PRODUCT_COPY_FILES += \
     device/samsung/ypg1/updater.sh:updater.sh \
@@ -234,3 +246,4 @@ PRODUCT_COPY_FILES += \
 # commonly available
 $(call inherit-product-if-exists, vendor/samsung/ypg1/ypg1-vendor.mk)
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4329/device-bcm.mk)
+$(call add-product-dex-preopt-module-config,services,--compiler-filter=speed)
