@@ -230,6 +230,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_DEX_PREOPT_DEFAULT_FLAGS := \
     --compiler-filter=interpret-only
 
+# Show SELinux in About Device
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.build.selinux=1
+
 # Conversion files
 PRODUCT_COPY_FILES += \
     device/samsung/ypg1/updater.sh:updater.sh \
