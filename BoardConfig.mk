@@ -69,6 +69,9 @@ BOARD_EGL_CFG := device/samsung/ypg1/prebuilt/etc/egl.cfg
 BOARD_USE_SKIA_LCDTEXT := true
 BOARD_EGL_SYSTEMUI_PBSIZE_HACK := true
 
+# OMX buffer
+BOARD_CANT_REALLOCATE_OMX_BUFFERS := true
+
 # Enable WEBGL in WebKit
 ENABLE_WEBGL := true
 
