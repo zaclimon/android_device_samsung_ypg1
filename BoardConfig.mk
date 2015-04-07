@@ -63,6 +63,7 @@ ICS_CAMERA_BLOB := true
 USE_OPENGL_RENDERER := true
 BOARD_EGL_CFG := device/samsung/ypg1/prebuilt/etc/egl.cfg
 BOARD_USE_SKIA_LCDTEXT := true
+BOARD_EGL_SYSTEMUI_PBSIZE_HACK := true
 
 # Enable WEBGL in WebKit
 ENABLE_WEBGL := true
