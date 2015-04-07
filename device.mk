@@ -66,7 +66,7 @@ PRODUCT_COPY_FILES += \
 	device/samsung/ypg1/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
 	device/samsung/ypg1/prebuilt/etc/media_codecs.xml:system/etc/media_codecs.xml \
 	frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
-    	frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
+    	frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:system/etc/media_codecs_google_video_le.xml
 
 # These are the OpenMAX IL modules
 PRODUCT_PACKAGES += \
