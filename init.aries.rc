@@ -26,14 +26,14 @@ on fs
     restorecon /dev/mapper/lvpool-system
     restorecon /dev/mapper/lvpool-userdata
 
-    mount yaffs2 mtd@cache /cache
-    mount yaffs2 mtd@datadata /datadata
+    mount yaffs2 mtd@cache /cache noatime nosuid nodev
+    mount yaffs2 mtd@datadata /datadata noatime nosuid nodev
     mount_all /fstab.aries
     swapon_all fstab.aries
 
 # We chown/chmod /efs because mount is run as root + defaults
     mkdir /efs 0775 radio radio
-    mount yaffs2 /dev/block/mtdblock4 /efs
+    mount yaffs2 /dev/block/mtdblock4 /efs noatime nosuid nodev
     chown radio radio /efs
     chmod 770 /efs/bluetooth
     chmod 770 /efs/imei
@@ -57,7 +57,7 @@ on post-fs
 # datadata permissions
     chown system system /datadata
     chmod 0771 /datadata
-    restorecon /datadata
+    restorecon_recursive /datadata
 
 # allow system to modify cpufreq control files
   chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
