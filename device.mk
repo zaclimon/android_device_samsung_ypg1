@@ -54,11 +54,15 @@ PRODUCT_COPY_FILES += \
      device/samsung/ypg1/prebuilt/usr/keychars/aries-keypad.kcm:system/usr/keychars/aries-keypad.kcm \
      device/samsung/ypg1/prebuilt/usr/idc/qt602240_ts_input.idc:system/usr/idc/qt602240_ts_input.idc
 
-
 # Generated kcm keymaps
 PRODUCT_PACKAGES := \
     cypress-touchkey.kcm \
     s3c-keypad.kcm
+
+# nosdcard specifies some strings suitable for devices not using sdcdard as
+# primary storage. The instances where the 'nosdcard' string is unsuitable
+# for devices with external SD has been fixed in CM's codebase
+PRODUCT_CHARACTERISTICS := nosdcard
 
 # These are the OpenMAX IL configuration files
 PRODUCT_COPY_FILES += \
