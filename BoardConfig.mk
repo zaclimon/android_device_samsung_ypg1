@@ -112,7 +112,7 @@ BOARD_ALLOW_EGL_HIBERNATION := true
 BOARD_EGL_WORKAROUND_BUG_10194508 := true
  
 # Define kernel config for inline building
-TARGET_KERNEL_CONFIG := cyanogenmod_ypg1_defconfig
+TARGET_KERNEL_CONFIG := quanta_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/aries
 
 # WIFI defines
