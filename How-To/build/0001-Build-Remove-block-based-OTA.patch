@@ -1,0 +1,25 @@
+From 13ca3be45b8434bd983c86b737cc7a96efa9177b Mon Sep 17 00:00:00 2001
+From: Isaac Pateau <isaacpateau05@gmail.com>
+Date: Wed, 1 Jul 2015 18:58:42 -0400
+Subject: [PATCH] Build: Remove block-based OTA
+
+Change-Id: Ib0f24c3f59373ae9873bed5e26b46a11143507d8
+---
+ core/Makefile | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/core/Makefile b/core/Makefile
+index 66dddc2..5d73163 100644
+--- a/core/Makefile
++++ b/core/Makefile
+@@ -1679,7 +1679,6 @@ $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE) $(DISTTOOLS)
+ 	@echo -e ${CL_YLW}"Package OTA:"${CL_RST}" $@"
+ 	$(hide) MKBOOTIMG=$(MKBOOTIMG) \
+ 	   $(OTA_FROM_TARGET_SCRIPT) -v \
+-	   --block \
+ 	   -p $(HOST_OUT) \
+ 	   -k $(KEY_CERT_PAIR) \
+ 	   --backup=$(backuptool) \
+-- 
+1.9.1
+

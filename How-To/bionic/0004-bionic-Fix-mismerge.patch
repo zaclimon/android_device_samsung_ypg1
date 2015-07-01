@@ -1,0 +1,26 @@
+From 382edbecde1453a591cee31041cc4e0dce4b5425 Mon Sep 17 00:00:00 2001
+From: Stefan Berger <s.berger81@gmail.com>
+Date: Thu, 12 Mar 2015 00:22:34 +0100
+Subject: [PATCH 4/4] bionic: Fix mismerge
+
+Change-Id: Ib1ae8602ee2fd470ada5412eac024c7531dac330
+---
+ linker/linker.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/linker/linker.cpp b/linker/linker.cpp
+index d1f3469..58fa79e 100644
+--- a/linker/linker.cpp
++++ b/linker/linker.cpp
+@@ -1497,7 +1497,7 @@ int soinfo::Relocate(ElfW(Rel)* rel, unsigned count) {
+             MARK(rel->r_offset);
+             TRACE_TYPE(RELO, "RELO %08x <- %d @ %08x %s", reloc, s->st_size, sym_addr, sym_name);
+             if (reloc == sym_addr) {
+-                ElfW(Sym)* src = soinfo_do_lookup(NULL, sym_name, &lsi, needed);
++                ElfW(Sym)* src = soinfo_do_lookup(NULL, sym_name, &lsi);
+ 
+                 if (src == NULL) {
+                     DL_ERR("%s R_ARM_COPY relocation source cannot be resolved", name);
+-- 
+1.9.1
+

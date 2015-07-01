@@ -1,0 +1,15 @@
+This document contains some instructions on how to compile CM12.1 for the YP-G1
+
+- First ensure that you're on the right branch (cm-12.1 for the device tree and cm-12.0 for the kernel source)
+
+- Be sure to have the proprietary vendor binaries (cm-11.0)
+
+- Download the hardware/samsung repo from omni. To do so, in the hardware folder inside your CM tree 
+ do the following: git clone https://github.com/omnirom/android_hardware_samsung -b android-5.0 samsung
+
+- The sub-folders here contain patches that are needed in order to get CM12 working. Their names represents the
+actual project where they needed to be applied. You can either execute the "apply_patches.sh" script or copy them
+individually and use the git am command to apply them.
+
+Once you're done, you can go ahead and do the command to build CM12
+. build/envsetup.sh && brunch ypg1
